@@ -5,6 +5,36 @@ import { Cube3D } from './components/Cube3D';
 import { Controls } from './components/Controls';
 import { MOVES, Move } from './types';
 
+// Fix for missing R3F JSX types
+declare module 'react' {
+  namespace JSX {
+    interface IntrinsicElements {
+      ambientLight: any;
+      directionalLight: any;
+      pointLight: any;
+      group: any;
+      mesh: any;
+      primitive: any;
+      boxGeometry: any;
+    }
+  }
+}
+
+// Ensure global JSX namespace is also patched for some environments
+declare global {
+  namespace JSX {
+    interface IntrinsicElements {
+      ambientLight: any;
+      directionalLight: any;
+      pointLight: any;
+      group: any;
+      mesh: any;
+      primitive: any;
+      boxGeometry: any;
+    }
+  }
+}
+
 // Helper to get random integer
 const randInt = (min: number, max: number) => Math.floor(Math.random() * (max - min + 1)) + min;
 
@@ -57,14 +87,16 @@ export default function App() {
       <Canvas shadows>
         <PerspectiveCamera makeDefault position={[5, 4, 6]} fov={45} />
         
-        <ambientLight intensity={0.5} />
+        {/* Enhanced Lighting for better color visibility */}
+        <ambientLight intensity={0.8} />
         <directionalLight 
           position={[10, 10, 5]} 
-          intensity={1} 
+          intensity={1.5} 
           castShadow 
           shadow-mapSize={[1024, 1024]} 
         />
-        <pointLight position={[-10, -10, -10]} intensity={0.5} color="blue" />
+        <pointLight position={[-10, -5, -10]} intensity={1} color="white" />
+        <pointLight position={[5, -5, 5]} intensity={0.5} color="white" />
 
         <group position={[0, 0, 0]}>
           <Cube3D 
@@ -88,7 +120,7 @@ export default function App() {
       </Canvas>
 
       {/* UI Overlay */}
-      <div className="absolute top-4 left-4 pointer-events-none">
+      <div className="absolute top-4 left-4 pointer-events-none select-none">
         <h1 className="text-4xl font-bold text-white drop-shadow-md tracking-tighter">
           RUBIK<span className="text-blue-500">'</span>S
           <br/>
