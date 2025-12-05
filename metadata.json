@@ -1,0 +1,5 @@
+{
+  "name": "3D Rubik's Cube",
+  "description": "A fully interactive 3D Rubik's Cube game featuring mouse controls, virtual keyboard, and scramble functionality.",
+  "requestFramePermissions": []
+}
