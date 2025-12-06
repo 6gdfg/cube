@@ -5,22 +5,7 @@ import { Cube3D } from './components/Cube3D';
 import { Controls } from './components/Controls';
 import { MOVES, Move } from './types';
 
-// Fix for missing R3F JSX types
-declare module 'react' {
-  namespace JSX {
-    interface IntrinsicElements {
-      ambientLight: any;
-      directionalLight: any;
-      pointLight: any;
-      group: any;
-      mesh: any;
-      primitive: any;
-      boxGeometry: any;
-    }
-  }
-}
-
-// Ensure global JSX namespace is also patched for some environments
+// Ensure global JSX namespace is patched for R3F elements
 declare global {
   namespace JSX {
     interface IntrinsicElements {

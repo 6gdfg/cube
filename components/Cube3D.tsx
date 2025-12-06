@@ -3,22 +3,7 @@ import { useFrame, useThree } from '@react-three/fiber';
 import * as THREE from 'three';
 import { Cubie, Move, FACE_COLORS, MOVES } from '../types';
 
-// Fix for missing R3F JSX types
-declare module 'react' {
-  namespace JSX {
-    interface IntrinsicElements {
-      group: any;
-      mesh: any;
-      primitive: any;
-      boxGeometry: any;
-      ambientLight: any;
-      directionalLight: any;
-      pointLight: any;
-    }
-  }
-}
-
-// Ensure global JSX namespace is also patched for some environments
+// Ensure global JSX namespace includes R3F elements
 declare global {
   namespace JSX {
     interface IntrinsicElements {
